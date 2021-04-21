@@ -20,7 +20,7 @@ namespace ForgetPasswordFlow.Controllers
         [HttpGet]
         public ActionResult ForgetPassword()
         {
-            ViewBag.Message = "ForgetPassword,Click Here to Recover your Account";
+            ViewBag.Message = "ForgetPassword,Click  to Recover your Account";
             return View();
         }
      
