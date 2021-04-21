@@ -31,6 +31,7 @@ namespace ForgetPasswordFlow.Controllers
             code = Request.QueryString["code"];
             string encodedcode = Request.QueryString["text"];
             string token = TempData["token"].ToString();
+            string token1 = encodedcode;
             ForgetPasswordViewModel model = new ForgetPasswordViewModel();
             //model.EmailConfirmationToken = code;
             model.token = token;
