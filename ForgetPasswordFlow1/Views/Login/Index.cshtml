@@ -1,0 +1,70 @@
+﻿@using ForgetPasswordFlow1.Models
+@model ForgetPasswordViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<script>
+    $(document).ready(function () {
+
+        var error = '@ViewBag.Message';
+        if (error) {
+            $("#username").addClass('has-error');
+            $("#password").addClass('has-error');
+        }
+
+    });
+</script>
+<div class="login-box">
+
+    @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="login-logo">
+            <b>FSM</b>Customer Portal
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Sign in to start your session</p>
+            @if (ViewBag.Message != null)
+            {
+                <div class="" style="padding:6px;margin-top: -11px;color: #dd4b39;">
+                    <strong>
+                        Error!
+                        @ViewBag.Message
+                    </strong>
+                </div>
+            }
+
+
+            <form method="post" id="test">
+                <div class="form-group has-feedback" id="username">
+                    @Html.TextBoxFor(model => model.user, new { @class = "form-control", placeholder = "Username", })
+                    <span clas s="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group  has-feedback " id="password">
+                    @Html.TextBoxFor(model => model.password, new { @class = "form-control", placeholder = "Password", type = "Password" })
+                    @*<input type="password" class="form-control" placeholder="Password">*@
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        &nbsp;
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+            @Html.ActionLink("I forgot my password?", "SendingEmail", "Login")
+
+            @*<a href="PreLoginActivity/SendingEmail.cshtml">I forgot my password</a><br>*@
+
+        </div>
+        <!-- /.login-box-body -->
+    }
+</div>
+<!-- /.login-box -->
